@@ -1,4 +1,5 @@
 src/node_modules
 src/BookShop/internal_logs
 src/BookShop/Migrations
+.vscode
 src/BookShop/bin
