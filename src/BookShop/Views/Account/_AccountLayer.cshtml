@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <title>@ViewData["Title"] - BookShop</title>
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+</head>
+
+<body class="font-poppins">
+    <div class="">
+        <main role="main" class="bg-white ">
+            <section id="account_section" class="w-full">
+                <div class="relative w-full bg-white flex items-center">
+                    <div class="flex-[0.4] bg-blue-500 h-screen w rounded-md m-2 p-11 space-y-8">
+                        <h1 class="text-white font-poppins font-semibold text-xl">BookShop</h1>
+                        <p class="text-3xl text-white font-bold">
+                            The Best Online Book Shop
+                        </p>
+                    </div>
+                    <div class="flex-1 grid items-center justify-center bg-white h-screen w-full p-4 m-auto" >
+                        @RenderBody()
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </div>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

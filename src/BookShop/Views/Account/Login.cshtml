@@ -1,0 +1,62 @@
+@model LoginVM
+@{
+    Layout = "_AccountLayer.cshtml";
+}
+
+<div class="space-y-5">
+    <div class="space-y-3">
+        <h1 class="font-poppins font-bold text-2xl">Sign In To BookShop</h1>
+        <div class="space-x-4">
+            <div class="inline-block w-11 h-11 rounded-sm bg-slate-300 text-center">
+                <a>
+                    <i></i>
+                </a>
+            </div>
+            <div class="inline-block w-11 h-11 rounded-sm bg-slate-300 text-center">
+                <a>
+                    <i></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+
+        <p class="inline-block">Or</p>
+
+    </div>
+
+
+    <div class="space-y-3">
+        <form method="post" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl" class="space-y-4">
+
+            <div class="block space-y-2 w-full">
+                <label asp-for="@Model.Email" class="text-black text-base font-semibold block"></label>
+                <input asp-for="@Model.Email"
+                    class="border-2 block outline-none w-full bg-slate-200 p-2 h-12 focus:border-blue-400 rounded-md focus:bg-white" />
+            </div>
+            <div class="space-y-2 block">
+                <div class="space-x-16">
+                    <label asp-for="@Model.Password" class="text-black text-base font-semibold inline-block"></label>
+                    <a asp-controller="Account" asp-action="ForgotPassword" class="text-base text-blue-600 font-semibold">Forgot password?</a>
+                </div>
+                
+                <input asp-for="@Model.Password"
+                    class="border-2 block outline-none bg-slate-200 p-2 w-ful h-12  focus:border-blue-400 rounded-md focus:bg-white" />
+            </div>
+            <div class="space-x-2">
+                <label asp-for="@Model.RememberMe" class="text-black text-base font-semibold"></label>
+                <input asp-for="@Model.RememberMe" class="w-4 h-4 border-[1px] focus:border-blue-500"/>
+            </div>
+
+            <div class="text-center h-12 bg-blue-600 w-[150px] rounded-md cursor-pointer">
+                <input type="submit" value="submit"
+                    class="text-white w-full h-full cursor-pointer text-sm font-semibold" />
+            </div>
+            <div>
+                <p class="text-base font-normal">Don't have an account? <a asp-controller="Account" asp-action="Register"
+                       asp-route-returnUrl="@Model.ReturnUrl" class="text-blue-700">Sign Up</a></p>
+            </div>
+        </form>
+    </div>
+
+</div>

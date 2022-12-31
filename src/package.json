@@ -1,0 +1,14 @@
+{
+  "name": "BookShop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Thomas Gumede",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  },
+  "scripts": {
+    "css:build": "npx tailwind build -i ./BookShop/wwwroot/css/site.css -o ./wwwroot/css/output.css",
+    "css:watch": "npx tailwindcss -i ./BookShop/wwwroot/css/site.css -o ./BookShop/wwwroot/css/output.css --watch"
+  }
+}

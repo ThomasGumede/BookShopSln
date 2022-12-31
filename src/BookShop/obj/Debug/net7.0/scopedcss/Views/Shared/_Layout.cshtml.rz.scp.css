@@ -1,0 +1,18 @@
+.navbar[b-o1kr3k45rr] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-color);
+  padding: .6rem 5rem;
+}
+
+.logo[b-o1kr3k45rr] {
+  color: #000;
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+#search_id[b-o1kr3k45rr] {
+  background-color: var(--light-color);
+  height: 2.5rem;
+}

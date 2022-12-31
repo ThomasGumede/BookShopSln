@@ -1,0 +1,17 @@
+/**
+ * copyright 2022 @ThomasGumede
+ */
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    img {
+        @apply max-w-none
+    }
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-serif
+    }
+}

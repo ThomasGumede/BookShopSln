@@ -1,0 +1,79 @@
+@model BookDetailViewModel
+@{
+    ViewData["Title"] = "Book.cshtml";
+}
+
+
+<section class="w-full space-y-10">
+    <div class="grid items-center w-full justify-center">
+        <div class="flex items-center space-x-8 w-full bg-white">
+            <div class="w-80 h-96">
+                @if (!string.IsNullOrEmpty(Model.Book.BookImageUri))
+                {
+                        <img src="~/@Model.Book.BookImageUri" alt="" class="rounded-lg w-full h-full" />
+                }
+            </div>
+            <div class="w-[500px] space-y-5">
+                <div class="space-y-3">
+                    <h1 class="text-5xl text-black">@Model.Book.Title <span
+                            class="text-slate-500 text-xl">@Model.Book.Eddition Ed</span></h1>
+                    <div class=" space-x-2">
+
+                        <p class="text-xs italic font-normal text-slate-500 inline-block">By
+                            @foreach (var item in Model.Book.Authors!)
+                            {
+                                <a>@item.FirstName, </a>
+                            }
+                        </p>
+                        <p class="text-xs font-normal text-blue-500 inline-block">@Model.Book.PublicationDate.Date -
+                            @Model.Book.PublicationDate.TimeOfDay</p>
+                        <p class="text-xs font-normal text-blue-500 inline-block">ISBN - @Model.Book.ISBN</p>
+                    </div>
+                    <p class="text-sm text-slate-500 font-normal">
+                        @(string.IsNullOrEmpty(Model.Book.Description) ? "No description" : Model.Book.Description)
+                    </p>
+                </div>
+                <div class="">
+                    <div class="grid grid-cols-[170px_120px] gap-x-4 items-center">
+                        <div class="flex items-center justify-between px-3 border-[0.5px] border-[#9199a0] h-11">
+                            <p class="text-base font-normal  text-[#9199a0]">Quantity</p>
+                            <div class="flex items-center space-x-4 font-normal text-[#9199a0]">
+                                <p class="text-xl cursor-pointer" id="qty-decr">
+                                    <</p>
+                                        <p class="text-blue-700 font-bold" id="qty-value">1</p>
+                                        <p class="text-xl cursor-pointer" id="qty-incr">></p>
+                            </div>
+                        </div>
+                        <div
+                            class="h-11 cursor-pointer bg-blue-700 flex items-center justify-center text-semibold text-white">
+                            <p id="add-cart">Add to Cart</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-full h-[1.3px] bg-slate-500">
+    </div>
+    <div class="space-y-5">
+        <div>
+            <p class="text-2xl text-black font-semibold">
+                Other similar books
+            </p>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="space-y-1 relative transition-all duration-500 text-center w-[190px] rounded-md h-72">
+                <div class="w-full h-[250px] rounded-md">
+                    <img src="~/images/bk3.jpg" alt="" class="rounded-lg w-full h-full" />
+                </div>
+                <div class="text-center space-y-1">
+                    <h4 class="text-black font-[400]">Hanging House</h4>
+                    <p class="text-blue-800 text-sm">R59.99</p>
+                </div>
+                <div class="absolute hidden top-1/2 left-1/2">
+                    <i class='bx bx-cart-alt text-slate-500 text-2xl'></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,15 @@
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/bin/Debug/net7.0/Data.deps.json
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/bin/Debug/net7.0/Data.dll
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/bin/Debug/net7.0/Data.pdb
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/bin/Debug/net7.0/Core.dll
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/bin/Debug/net7.0/Core.pdb
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/obj/Debug/net7.0/Data.csproj.AssemblyReference.cache
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/obj/Debug/net7.0/Data.GeneratedMSBuildEditorConfig.editorconfig
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/obj/Debug/net7.0/Data.AssemblyInfoInputs.cache
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/obj/Debug/net7.0/Data.AssemblyInfo.cs
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/obj/Debug/net7.0/Data.csproj.CoreCompileInputs.cache
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/obj/Debug/net7.0/Data.csproj.CopyComplete
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/obj/Debug/net7.0/Data.dll
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/obj/Debug/net7.0/refint/Data.dll
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/obj/Debug/net7.0/Data.pdb
+/home/thomas/Desktop/Web apps/BookShopSln/src/Data/obj/Debug/net7.0/ref/Data.dll

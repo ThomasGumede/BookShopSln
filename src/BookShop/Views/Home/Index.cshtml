@@ -1,0 +1,146 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<section class="space-y-12">
+    <article id="Home" class=" bg-white">
+        <div class="home_baner w-full  flex items-center space-x-7">
+            <div class="space-y-5">
+                <h1 class="text-6xl font-[400] font-serif text-black">
+                    Best Books For Every Body
+                </h1>
+                <p class="text-base text-slate-600">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt, animi. Repudiandae sequi
+                    suscipit
+                    perferendis numquam aspernatur, aut neque, obcaecati possimus saepe praesentium aliquid rem,
+                    voluptatum
+                    vitae soluta consectetur facilis magnam?
+                </p>
+
+
+                <button class="outline-none bg-blue-700 text-white py-3 px-4 rounded-md">
+                    <a>Shop Now</a>
+                </button>
+            </div>
+            <div class="relative overflow-hidden">
+                <img src="~/images/home_img.jpg" alt="home image" class="max-w-full" />
+            </div>
+        </div>
+    </article>
+    <article id="books" class="">
+        <div class="w-full flex justify-center space-x-12">
+            <div class="flex-[0.3] w-[15%] space-y-4">
+                <div class="bg-blue-700 space-y-3 p-3 rounded-md">
+                    <h4 class="bg-white p-2 rounded-md text-lg text-blue-700 font-semibold">
+                        Genres
+                    </h4>
+                    <ul>
+                        @foreach (var item in Model.Genres)
+                        {
+                            <li class="p-2"><a asp-controller="Book" asp-action="Index" asp-route-filterterms="@item.GenreId" asp-route-orderby="price,title asc" class="text-base text-white font-normal">@item.Name</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h1 class="text-lg font-regular  text-black">
+                        Featured Books
+                    </h1>
+                    <ul>
+                        <li class="p-2 border-2 border-slate-600 rounded-md">
+                            <div class="flex items-center bg-white space-x-4">
+                                <div class="w-[100px] h-[120px]">
+                                    <img src="~/images/bk3.jpg" alt="" class="h-full" />
+                                </div>
+                                <div class="space-y-1">
+                                    <a href="" class=" text-lg font-serif text-black">
+                                        Hanging House
+                                    </a>
+                                    <p class="text-xs text-slate-500">
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit...
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-blue-800 text-base font-normal">
+                                            R59.99
+                                        </p>
+                                        <div>
+                                            <i class='bx bx-cart-alt text-slate-500 text-xl'></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="space-y-12 flex-1 w-9/12">
+                <div class="space-y-4">
+                    <div class="flex w-full items-center justify-between">
+                        <div>
+                            <h1 class="text-black text-3xl">Awesome Books</h1>
+
+                        </div>
+                        <div>
+                            <a asp-controller="Book" asp-action="Index" class="text-black hover:text-blue-500 font-semibold">View More..</a>
+                        </div>
+
+                    </div>
+                    <div class="flex items-center gap-4">
+                        @if (Model.Books.Count() != 0)
+                        {
+                            @foreach (var item in Model.Books)
+                            {
+                                <div
+                            class="space-y-1 relative transition-all duration-500 text-center w-[190px] rounded-md h-72">
+                                    <div class="w-full h-[250px] rounded-md">
+                                        @if (!string.IsNullOrEmpty(item.BookImageUri))
+                                        {
+                                            <img src="~/@item.BookImageUri" alt="" class="rounded-lg w-full h-full" />
+                                        }
+                                    </div>
+                                    <div class="text-center space-y-1">
+                                        <a asp-controller="Book" asp-action="Details" asp-route-bookId="@item.bookId"
+                                    class="text-black font-[400]">@item.Title</a>
+                                        <p class="text-blue-800 text-sm">R @item.Price</p>
+                                    </div>
+                                    <div class="absolute hidden top-1/2 left-1/2">
+                                        <i class='bx bx-cart-alt text-slate-500 text-2xl'></i>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex w-full items-center justify-between">
+                        <div>
+                            <h1 class="text-black text-2xl">Most Published Authors</h1>
+                        </div>
+                        <div>
+                            <a class="text-black font-semibold">View More..</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        @foreach (var item in Model.Authors)
+                        {
+                            <div
+                            class="space-y-1 relative transition-all duration-500 text-center w-[190px] rounded-md h-72">
+                                <div class="w-full h-[250px] rounded-md">
+                                    <img src="~/images/bk3.jpg" alt="" class="rounded-lg w-full h-full" />
+                                </div>
+                                <div class="text-center space-y-1">
+                                    <h4 class="text-black font-[400]">@item.FirstName @item.LastName</h4>
+                                    <p class="text-blue-800 text-sm">@item.BookCount books published</p>
+                                </div>
+                                <div class="absolute hidden top-1/2 left-1/2">
+                                    <i class='bx bx-cart-alt text-slate-500 text-2xl'></i>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>

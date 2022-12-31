@@ -1,0 +1,98 @@
+@model BookViewModel
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+<section>
+    <div class="w-full flex justify-center space-x-12">
+        <div class="flex-[0.3] w-[15%]">
+            <div class="border-2 border-blue-600 bg-white space-y-3 p-3 rounded-md">
+                <h4 class="bg-white p-2 rounded-md text-lg text-blue-700 font-semibold">
+                    Filters
+                </h4>
+                <div class="space-y-4">
+
+                    <div>
+                        <p class="text-black text-base font-semibold">Price</p>
+                        <div class="block space-y-2 pl-5">
+                            <a asp-controller="Book" asp-action="Index" asp-route-orderby="price asc" class="outline-none block text-sm text-black font-normal">
+                                Low - High
+                            </a>
+                            <a asp-controller="Book" asp-action="Index" asp-route-orderby="price desc" class="outline-none block text-sm text-black font-normal">
+                                High - Low
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-black text-base font-semibold">Order By</p>
+                        <div class="block space-y-2 pl-5">
+                            <a asp-controller="Book" asp-action="Index" asp-route-orderby="title asc" class="outline-none block text-sm text-black font-normal">
+                                Title
+                            </a>
+                            <a asp-controller="Book" asp-action="Index" asp-route-orderby="date asc" class="outline-none block text-sm text-black font-normal">
+                                Date
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-black text-base font-semibold">Book Languege</p>
+                        <div class="block space-y-2 pl-5">
+                            <a asp-controller="Book" asp-action="Index" asp-route-filterterms="novel" class="outline-none block text-sm text-black font-normal">
+                                English
+                            </a>
+                            <a asp-controller="Book" asp-action="Index" asp-route-filterterms="novel" class="outline-none block text-sm text-black font-normal">
+                                Zulu
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="space-y-12 flex-1 grid items-center justify-center w-9/12">
+            <div class="space-y-8 w-full">
+                <div class="overflow-x-auto">
+                    <ul class="flex items-center space-x-4">
+                        <li><a asp-action="Index" asp-route-filterterms="all"
+                                class="outline-none border-2 border-slate-500 rounded-3xl transition-all duration-500 hover:border-blue-500 hover:text-blue-500 text-slate-500 text-xs text-center py-2 px-3 ">All</a>
+                        </li>
+                        @foreach (var item in Model.Genres)
+                        {
+                                <li><a asp-action="Index" asp-route-filterterms="@item.GenreId" asp-route-pagenumber="2" data-genre-id="@item.GenreId"
+                                class="outline-none border-2 border-slate-500 rounded-3xl transition-all duration-500 hover:border-blue-500 hover:text-blue-500 text-slate-500 text-xs text-center py-1 px-3 ">@item.Name</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="grid grid-cols-4 items-center gap-4 gap-y-12">
+                    @foreach (var item in Model.Books)
+                    {
+                        <div class="space-y-1 relative transition-all duration-500 text-center w-[190px] rounded-md h-72">
+                            <div class="w-full h-[250px] rounded-md">
+                                @if (!string.IsNullOrEmpty(item.BookImageUri))
+                                {
+                                    <img src="~/@item.BookImageUri" alt="" class="rounded-lg w-full h-full" />
+                                }
+
+                            </div>
+                            <div class="text-center space-y-1">
+                                <a asp-controller="Book" asp-action="Details" asp-route-bookId="@item.bookId"
+                                class="text-black font-[400]">@item.Title</a>
+                                <p class="text-blue-800 text-sm">@item.Price.ToString("C2")</p>
+                            </div>
+                            <div class="absolute hidden top-1/2 left-1/2">
+                                <i class='bx bx-cart-alt text-slate-500 text-2xl'></i>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div>
+                <div>Load</div>
+            </div>
+        </div>
+    </div>
+</section>

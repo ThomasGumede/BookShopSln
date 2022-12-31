@@ -1,0 +1,306 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/thomas/Desktop/Web apps/BookShopSln/src/BookShop/BookShop.csproj": {}
+  },
+  "projects": {
+    "/home/thomas/Desktop/Web apps/BookShopSln/src/BookShop/BookShop.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/thomas/Desktop/Web apps/BookShopSln/src/BookShop/BookShop.csproj",
+        "projectName": "BookShop",
+        "projectPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/BookShop/BookShop.csproj",
+        "packagesPath": "/home/thomas/.nuget/packages/",
+        "outputPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/BookShop/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/thomas/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/thomas/Desktop/Web apps/BookShopSln/src/Core/Core.csproj": {
+                "projectPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Core/Core.csproj"
+              },
+              "/home/thomas/Desktop/Web apps/BookShopSln/src/Data/Data.csproj": {
+                "projectPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Data/Data.csproj"
+              },
+              "/home/thomas/Desktop/Web apps/BookShopSln/src/Service/Service.csproj": {
+                "projectPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Service/Service.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SQLite": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/thomas/Desktop/Web apps/BookShopSln/src/Core/Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/thomas/Desktop/Web apps/BookShopSln/src/Core/Core.csproj",
+        "projectName": "Core",
+        "projectPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Core/Core.csproj",
+        "packagesPath": "/home/thomas/.nuget/packages/",
+        "outputPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/thomas/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/thomas/Desktop/Web apps/BookShopSln/src/Data/Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/thomas/Desktop/Web apps/BookShopSln/src/Data/Data.csproj",
+        "projectName": "Data",
+        "projectPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Data/Data.csproj",
+        "packagesPath": "/home/thomas/.nuget/packages/",
+        "outputPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Data/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/thomas/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/thomas/Desktop/Web apps/BookShopSln/src/Core/Core.csproj": {
+                "projectPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Core/Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "NLog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "System.Linq.Dynamic.Core": {
+              "target": "Package",
+              "version": "[1.2.24, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/thomas/Desktop/Web apps/BookShopSln/src/Service/Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/thomas/Desktop/Web apps/BookShopSln/src/Service/Service.csproj",
+        "projectName": "Service",
+        "projectPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Service/Service.csproj",
+        "packagesPath": "/home/thomas/.nuget/packages/",
+        "outputPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Service/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/thomas/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/thomas/Desktop/Web apps/BookShopSln/src/Core/Core.csproj": {
+                "projectPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Core/Core.csproj"
+              },
+              "/home/thomas/Desktop/Web apps/BookShopSln/src/Data/Data.csproj": {
+                "projectPath": "/home/thomas/Desktop/Web apps/BookShopSln/src/Data/Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
