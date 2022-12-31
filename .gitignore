@@ -3,3 +3,6 @@ src/BookShop/internal_logs
 src/BookShop/Migrations
 .vscode
 src/BookShop/bin
+src/Core/bin
+src/Service/bin
+src/Data/bin
