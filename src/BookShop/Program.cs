@@ -13,8 +13,14 @@ builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureSqlContext(builder.Configuration);
-builder.Services.AddAuthentication();
+builder.Services.AddAuthentication().AddCookie(opts => {
+    opts.LoginPath = "/Account/Login";
+    opts.LogoutPath = "/Account/Signout";
+});
 builder.Services.ConfigureIdentity();
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 
@@ -44,10 +50,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "filter",
-    pattern: "{controller}/{action}/filter/{filterterms}/{pagenumber?}/{pagesize?}/{orderby?}"
-);
+app.UseSession();
 
 app.MapControllerRoute(
 

@@ -16,10 +16,10 @@
                     <div>
                         <p class="text-black text-base font-semibold">Price</p>
                         <div class="block space-y-2 pl-5">
-                            <a asp-controller="Book" asp-action="Index" asp-route-orderby="price asc" class="outline-none block text-sm text-black font-normal">
+                            <a asp-controller="Book" asp-action="Index" asp-route-pagenumber="@Model.Metadata.CurrentPage" asp-route-orderby="price asc" class="outline-none block text-sm text-black font-normal">
                                 Low - High
                             </a>
-                            <a asp-controller="Book" asp-action="Index" asp-route-orderby="price desc" class="outline-none block text-sm text-black font-normal">
+                            <a asp-controller="Book" asp-action="Index" asp-route-pagenumber="@Model.Metadata.CurrentPage" asp-route-orderby="price desc" class="outline-none block text-sm text-black font-normal">
                                 High - Low
                             </a>
                         </div>
@@ -27,22 +27,11 @@
                     <div>
                         <p class="text-black text-base font-semibold">Order By</p>
                         <div class="block space-y-2 pl-5">
-                            <a asp-controller="Book" asp-action="Index" asp-route-orderby="title asc" class="outline-none block text-sm text-black font-normal">
+                            <a asp-controller="Book" asp-action="Index" asp-route-pagenumber="@Model.Metadata.CurrentPage" asp-route-orderby="title asc" class="outline-none block text-sm text-black font-normal">
                                 Title
                             </a>
-                            <a asp-controller="Book" asp-action="Index" asp-route-orderby="date asc" class="outline-none block text-sm text-black font-normal">
+                            <a asp-controller="Book" asp-action="Index" asp-route-pagenumber="@Model.Metadata.CurrentPage" asp-route-orderby="date asc" class="outline-none block text-sm text-black font-normal">
                                 Date
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="text-black text-base font-semibold">Book Languege</p>
-                        <div class="block space-y-2 pl-5">
-                            <a asp-controller="Book" asp-action="Index" asp-route-filterterms="novel" class="outline-none block text-sm text-black font-normal">
-                                English
-                            </a>
-                            <a asp-controller="Book" asp-action="Index" asp-route-filterterms="novel" class="outline-none block text-sm text-black font-normal">
-                                Zulu
                             </a>
                         </div>
                     </div>
@@ -51,17 +40,17 @@
 
             </div>
         </div>
-        <div class="space-y-12 flex-1 grid items-center justify-center w-9/12">
+        <div class="space-y-16 flex-1 w-9/12">
             <div class="space-y-8 w-full">
-                <div class="overflow-x-auto">
+                <div class="w-full">
                     <ul class="flex items-center space-x-4">
                         <li><a asp-action="Index" asp-route-filterterms="all"
-                                class="outline-none border-2 border-slate-500 rounded-3xl transition-all duration-500 hover:border-blue-500 hover:text-blue-500 text-slate-500 text-xs text-center py-2 px-3 ">All</a>
+                                class="outline-none border-2 border-slate-500 rounded-3xl transition-all w-content duration-500 hover:border-blue-500 hover:text-blue-500 text-slate-500 text-xs text-center py-2 px-3 ">All</a>
                         </li>
                         @foreach (var item in Model.Genres)
                         {
-                                <li><a asp-action="Index" asp-route-filterterms="@item.GenreId" asp-route-pagenumber="2" data-genre-id="@item.GenreId"
-                                class="outline-none border-2 border-slate-500 rounded-3xl transition-all duration-500 hover:border-blue-500 hover:text-blue-500 text-slate-500 text-xs text-center py-1 px-3 ">@item.Name</a>
+                                <li><a asp-action="Index" asp-route-filterterms="@item.GenreId" data-genre-id="@item.GenreId"
+                                class="outline-none border-2 border-slate-500 rounded-3xl transition-all w-content duration-500 hover:border-blue-500 hover:text-blue-500 text-slate-500 text-xs text-center py-1 px-3 ">@item.Name</a>
                             </li>
                         }
                     </ul>
@@ -90,8 +79,10 @@
 
                 </div>
             </div>
-            <div>
-                <div>Load</div>
+            <div class="space-x-7 block">
+                
+                <a asp-controller="Book" asp-action="Index" asp-route-pagenumber="@(Model.Metadata.CurrentPage - 1)" class='text-4xl active:border-blue-500 active:text-blue-500 hover:border-blue-500 hover:text-blue-500 @(Model.Metadata.HasPrevious ? "inline-block": "hidden") w-11 h-11 border-2 border-slate-500 cursor-pointer font-semibold text-center text-slate-500'><</a>
+                <a asp-controller="Book" asp-action="Index" asp-route-pagenumber="@(Model.Metadata.CurrentPage + 1)" class='text-4xl active:border-blue-500 active:text-blue-500 hover:border-blue-500 hover:text-blue-500 @(Model.Metadata.HasNext ? "inline-block": "hidden") w-11 h-11 border-2 border-slate-500 cursor-pointer font-semibold text-center text-slate-500'>></a>
             </div>
         </div>
     </div>

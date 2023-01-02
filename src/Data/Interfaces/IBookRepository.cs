@@ -2,11 +2,10 @@ using Core.Entities;
 using Data.Request;
 
 namespace Data.Interfaces;
-public interface IBookRepository
+public interface IBookRepository : IRepositoryBase<Book>
 {
     Task<PagedList<Book>> GetAllAsync(RequestParameters requestParameters, bool trackChanges);
-    Task<PagedList<Book>> GetAllAsync(bool trackChanges, int pageNumber, int pageSize);
+    Task<IEnumerable<Book>> GetAllAsync(bool trackChanges);
+    Task<IEnumerable<Book>> GetRandomAsync(bool trackChanges);
     Task<Book?> GetBookByIdAsync(int BookId, bool trackChanges);
-    void CreateBook(Book book);
-    void DeleteBook(Book book);
 }

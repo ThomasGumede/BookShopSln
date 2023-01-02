@@ -37,7 +37,9 @@
                     <ul>
                         @foreach (var item in Model.Genres)
                         {
-                            <li class="p-2"><a asp-controller="Book" asp-action="Index" asp-route-filterterms="@item.GenreId" asp-route-orderby="price,title asc" class="text-base text-white font-normal">@item.Name</a></li>
+                            <li class="p-2"><a asp-controller="Book" asp-action="Index"
+                                asp-route-filterterms="@item.GenreId" asp-route-orderby="price,title asc"
+                                class="text-base text-white font-normal">@item.Name</a></li>
                         }
                     </ul>
                 </div>
@@ -45,30 +47,34 @@
                     <h1 class="text-lg font-regular  text-black">
                         Featured Books
                     </h1>
-                    <ul>
-                        <li class="p-2 border-2 border-slate-600 rounded-md">
-                            <div class="flex items-center bg-white space-x-4">
-                                <div class="w-[100px] h-[120px]">
-                                    <img src="~/images/bk3.jpg" alt="" class="h-full" />
-                                </div>
-                                <div class="space-y-1">
-                                    <a href="" class=" text-lg font-serif text-black">
-                                        Hanging House
-                                    </a>
-                                    <p class="text-xs text-slate-500">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit...
-                                    </p>
-                                    <div class="flex items-center justify-between">
-                                        <p class="text-blue-800 text-base font-normal">
-                                            R59.99
+                    <ul class="space-y-5">
+                        @foreach (var item in Model.RandomBooks)
+                        {
+                            <li class="p-1 border-2 border-slate-600 rounded-md">
+                                <div class="flex items-center bg-white space-x-4">
+                                    <div class="w-[100px] h-[120px]">
+                                        <img src="~/@item.BookImageUri" alt="" class="h-full" />
+                                    </div>
+                                    <div class="space-y-1">
+                                        <a asp-controller="Book" asp-action="Details" asp-route-bookId="@item.bookId"  class=" text-lg font-serif text-black">
+                                            @item.Title
+                                        </a>
+                                        <p class="text-xs text-slate-500">
+                                            @(string.IsNullOrEmpty(item.Description) ? "No Description" : item.Description.Substring(0, 30))
                                         </p>
-                                        <div>
-                                            <i class='bx bx-cart-alt text-slate-500 text-xl'></i>
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-blue-800 text-base font-normal">
+                                                @item.Price.ToString("C")
+                                            </p>
+                                            <div>
+                                                <i class='bx bx-cart-alt text-slate-500 text-xl'></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>
@@ -80,7 +86,8 @@
 
                         </div>
                         <div>
-                            <a asp-controller="Book" asp-action="Index" class="text-black hover:text-blue-500 font-semibold">View More..</a>
+                            <a asp-controller="Book" asp-action="Index"
+                                class="text-black hover:text-blue-500 font-semibold">View More..</a>
                         </div>
 
                     </div>

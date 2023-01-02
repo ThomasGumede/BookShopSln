@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using System.Net.Mail;
 using Data.Interfaces;
 using BookShop.Models;
@@ -106,8 +107,9 @@ public class AccountController : Controller
         return View(model);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Logout(string? returnUrl = null)
+
+    [Authorize]
+    public async Task<IActionResult> Signout(string? returnUrl = null)
     {
         await _signInManager.SignOutAsync();
 

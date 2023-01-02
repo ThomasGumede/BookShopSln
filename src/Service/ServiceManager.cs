@@ -10,9 +10,9 @@ public class ServiceManager : IServiceManager
     private readonly Lazy<IAuthorService> _authorService;
     private readonly Lazy<IGenreService> _genreService;
 
-    public ServiceManager(IMapper mapper,  IRepositoryManager repo)
+    public ServiceManager(IMapper mapper,  IRepositoryManager repo, ILoggerManager logger)
     {
-        _bookService = new Lazy<IBookService>(() => new BookService(repo, mapper));
+        _bookService = new Lazy<IBookService>(() => new BookService(repo, mapper, logger));
         _authorService = new Lazy<IAuthorService>(() => new AuthorService(repo, mapper));
         _genreService = new Lazy<IGenreService>(() => new GenreService(repo, mapper));
     }

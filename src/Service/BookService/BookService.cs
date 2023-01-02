@@ -11,32 +11,39 @@ namespace Service;
 public class BookService : IBookService
 {
     private readonly IRepositoryManager _context;
-    // private readonly ILoggerManager _logger;
+    private readonly ILoggerManager _logger;
     private readonly IMapper _mapper;
 
-    public BookService(IRepositoryManager _repo, IMapper map)
+    public BookService(IRepositoryManager _repo, IMapper map, ILoggerManager log)
     {
         _context = _repo;
-        // _logger = log;
+        _logger = log;
         _mapper = map;
     }
 
-    public async Task<(IEnumerable<BookDto> bookDtos, MetaData metaData)> GetAllBooksAsync(bool trackChanges, int pageNumber = 1, int pageSize = 5)
+    public async Task<IEnumerable<BookDto>> GetAllBooksAsync(bool trackChanges)
     {
-        var books = await _context.bookRepository.GetAllAsync(trackChanges, pageNumber, pageSize);
-        var data = books.MetaData.CurrentPage;
+        var books = await _context.bookRepository.GetAllAsync(trackChanges);
+
         var bookDto = _mapper.Map<IEnumerable<BookDto>>(books);
-        return (bookDtos: bookDto, metaData: books.MetaData);
+        return bookDto;
     }
 
-    public async Task<(IEnumerable<BookDto> bookDtos, MetaData metaData)> GetAllBooksAsync(RequestParameters requestParameters, bool trackChanges)
+    public async Task<(IEnumerable<BookDto> books, MetaData metaData)> GetAllBooksAsync(RequestParameters requestParameters, bool trackChanges)
     {
         var books = await _context.bookRepository.GetAllAsync(requestParameters, trackChanges);
         var bookDto = _mapper.Map<IEnumerable<BookDto>>(books);
 
-        return (bookDtos: bookDto, metaData: books.MetaData);
+        return (books: bookDto, metaData: books.MetaData);
     }
 
+    public async Task<IEnumerable<BookDto>> GetRandomBooksAsync(bool trackChanges)
+    {
+        var books = await _context.bookRepository.GetRandomAsync(trackChanges);
+        var bookdtos = _mapper.Map<IEnumerable<BookDto>>(books);
+
+        return bookdtos;
+    }
     public async Task<BookDetailsDto> GetBookDetailsAsync(int bookId, bool trackChanges)
     {
         var book = await GetBookAndCheckIfItExists(bookId, trackChanges);
@@ -48,7 +55,7 @@ public class BookService : IBookService
     public async Task<BookDetailsDto> AddBookAsync(BookDetailsDto bookdto)
     {
         var book = _mapper.Map<Book>(bookdto);
-        _context.bookRepository.CreateBook(book);
+        _context.bookRepository.Create(book);
 
         await _context.SaveAsync();
 
@@ -59,7 +66,7 @@ public class BookService : IBookService
     {
         var book = await GetBookAndCheckIfItExists(bookId, trackChanges);
 
-        _context.bookRepository.DeleteBook(book);
+        _context.bookRepository.Delete(book);
         await _context.SaveAsync();
 
     }

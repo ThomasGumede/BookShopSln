@@ -5,15 +5,16 @@ namespace Data.Repository;
 
 public static class QueryExtension
 {
-    public static IQueryable<Book> FilterBook(this IQueryable<Book> source, List<string>? genres)
+    public static IQueryable<Book> FilterBook(this IQueryable<Book> source, string? filterterm)
     {
-        if(genres == null)
+        if(string.IsNullOrEmpty(filterterm))
             return source;
         
-        if(genres.Contains("all"))
+        if(string.Equals(filterterm, "all"))
             return source;
-
-        return source.Where(c => genres.Contains(c.GenreId!));
+        var lowerFilterTerm = filterterm.Trim().ToLower();
+        
+        return source.Where(c => c.GenreId!.Contains(lowerFilterTerm));
     }
 
     public static IQueryable<Book> Search(this IQueryable<Book> source, string? searchTerm)

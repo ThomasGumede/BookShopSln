@@ -2,7 +2,7 @@ using Data.Request;
 
 namespace Data.DTOs;
 
-public record class BookDto(int bookId, string Title, string? BookImageUri, double Price);
+public record class BookDto(int bookId, string Title, string? BookImageUri, double Price, string? Description);
 
 public record class BookDetailsDto
 {

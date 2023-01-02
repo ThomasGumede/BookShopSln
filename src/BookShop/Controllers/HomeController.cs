@@ -17,31 +17,23 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var books = await _service.bookService.GetAllBooksAsync(false, 1, 5);
+        var books = await _service.bookService.GetAllBooksAsync(false);
         var authors = await _service.authorService.AllAuthorsAsync(false);
         var genres = await _service.genreService.AllGenresAsync(false);
 
         var home = new HomeViewModel
         {
-            Books = books.bookDtos,
+            Books = books.Take(5),
+            RandomBooks = await _service.bookService.GetRandomBooksAsync(false),
             Authors = authors.Take(5),
             Genres = genres.Take(5)
         };
 
-        // var data = books.metaData.CurrentPage;;
+
 
         return View(home);
     }
 
-    public IActionResult Books()
-    {
-        return View();
-    }
-
-    public IActionResult Book()
-    {
-        return View();
-    }
 
     public IActionResult Privacy()
     {

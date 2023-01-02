@@ -19,34 +19,39 @@ namespace BookShop.Controllers
             _logger = logger;
             _service = service;
         }
-        // [Route("filter/{filterterms?}/orderby/{orderby?}")]
-        public async Task<IActionResult> Index([FromRoute]RequestParameters requestParameters)
+
+        public async Task<IActionResult> Index([FromQuery] RequestParameters requestParameters)
         {
             var books = await _service.bookService.GetAllBooksAsync(requestParameters, false);
             var genres = await _service.genreService.AllGenresAsync(false);
-            Console.WriteLine("books.metaData.CurrentPage");
-            _logger.LogInfo($"CURRENT PAGE {books.metaData.CurrentPage}");
-            Console.WriteLine(books.metaData.CurrentPage);
+
             var BookViewModel = new BookViewModel
             {
-                MetaData = books.metaData,
-                Books = books.bookDtos,
+                Metadata = books.metaData,
+                Books = books.books,
                 Genres = genres
             };
 
             return View(BookViewModel);
         }
+
         [Route("Details/{bookId}")]
         public async Task<IActionResult> Details(int bookId)
         {
             var book = await _service.bookService.GetBookDetailsAsync(bookId, false);
 
-            if(book is null)
+            if (book is null)
                 return NotFound();
+
+            var request = new RequestParameters { FilterTerms = book.GenreId };
+            var similarbooks = await _service.bookService.GetAllBooksAsync(request, false);
+
+
 
             var BookDetailViewModel = new BookDetailViewModel
             {
-                Book = book
+                Book = book,
+                SimilarBooks = similarbooks.books.Take(6)
             };
 
             return View(BookDetailViewModel);

@@ -12,7 +12,7 @@ namespace Data.Repository
         public BookRepository(RepositoryContext context) : base(context)
         { }
 
-        public async Task<PagedList<Book>> GetAllAsync(bool trackChanges, int pageNumber, int pageSize)
+        public async Task<IEnumerable<Book>> GetAllAsync(bool trackChanges)
         {
             var books = await FindAll(trackChanges).Select(b => new Book {
                 BookId = b.BookId,
@@ -21,9 +21,23 @@ namespace Data.Repository
                 Price = b.Price
             }).ToListAsync();
 
-            return PagedList<Book>.ToPagedList(books, pageNumber, pageSize);
-        }
             
+
+            return books;
+        }
+
+        public async Task<IEnumerable<Book>> GetRandomAsync(bool trackChanges) =>
+            await FindAll(trackChanges)
+            .Select(book => new Book{ 
+                BookId = book.BookId, 
+                BookImageUri = book.BookImageUri,
+                Title = book.Title,
+                Description = book.Description,
+                Price = book.Price
+            })
+            .OrderBy(b => EF.Functions.Random())
+            .Take(5).ToListAsync();
+
 
         public async Task<PagedList<Book>> GetAllAsync(RequestParameters requestParameters, bool trackChanges)
         {
@@ -40,7 +54,9 @@ namespace Data.Repository
                         .Sort(requestParameters.OrderBy)
                         .ToListAsync();
 
-            return PagedList<Book>.ToPagedList(books, requestParameters.PageNumber, requestParameters.PageSize);
+            var data = PagedList<Book>.ToPagedList(books, requestParameters.PageNumber, requestParameters.PageSize);
+
+            return data;
         }
 
         public async Task<Book?> GetBookByIdAsync(int bookId, bool trackChanges) =>
@@ -48,9 +64,5 @@ namespace Data.Repository
             .Include(book => book.Authors)
             .Include(book => book.Genre)
             .SingleOrDefaultAsync();
-
-        public void CreateBook(Book book) => Create(book);
-
-        public void DeleteBook(Book book) => Delete(book);
     }
 }

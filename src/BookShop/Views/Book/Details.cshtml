@@ -10,7 +10,7 @@
             <div class="w-80 h-96">
                 @if (!string.IsNullOrEmpty(Model.Book.BookImageUri))
                 {
-                        <img src="~/@Model.Book.BookImageUri" alt="" class="rounded-lg w-full h-full" />
+                    <img src="~/@Model.Book.BookImageUri" alt="" class="rounded-lg w-full h-full" />
                 }
             </div>
             <div class="w-[500px] space-y-5">
@@ -38,15 +38,14 @@
                         <div class="flex items-center justify-between px-3 border-[0.5px] border-[#9199a0] h-11">
                             <p class="text-base font-normal  text-[#9199a0]">Quantity</p>
                             <div class="flex items-center space-x-4 font-normal text-[#9199a0]">
-                                <p class="text-xl cursor-pointer" id="qty-decr">
-                                    <</p>
-                                        <p class="text-blue-700 font-bold" id="qty-value">1</p>
-                                        <p class="text-xl cursor-pointer" id="qty-incr">></p>
+                                <button class="text-xl border-none outline-none cursor-pointer" id="qty-decr"><</button>
+                                <p class="text-blue-700 font-bold" id="qty-value">1</p>
+                                <button class="text-xl border-none outline-none" id="qty-incr">></button>
                             </div>
                         </div>
                         <div
                             class="h-11 cursor-pointer bg-blue-700 flex items-center justify-center text-semibold text-white">
-                            <p id="add-cart">Add to Cart</p>
+                            <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.Book.BookId" asp-route-quantity="1" id="add-cart">Add to Cart</a>
                         </div>
                     </div>
                 </div>
@@ -62,18 +61,79 @@
             </p>
         </div>
         <div class="flex items-center gap-4">
-            <div class="space-y-1 relative transition-all duration-500 text-center w-[190px] rounded-md h-72">
-                <div class="w-full h-[250px] rounded-md">
-                    <img src="~/images/bk3.jpg" alt="" class="rounded-lg w-full h-full" />
-                </div>
-                <div class="text-center space-y-1">
-                    <h4 class="text-black font-[400]">Hanging House</h4>
-                    <p class="text-blue-800 text-sm">R59.99</p>
-                </div>
-                <div class="absolute hidden top-1/2 left-1/2">
-                    <i class='bx bx-cart-alt text-slate-500 text-2xl'></i>
-                </div>
-            </div>
+            @foreach (var item in Model.SimilarBooks)
+            {
+                <div class="space-y-1 relative transition-all duration-500 text-center w-[190px] rounded-md h-72">
+                    <div class="w-full h-[250px] rounded-md">
+                        @if (!string.IsNullOrEmpty(item.BookImageUri))
+                        {
+                            <img src="~/@item.BookImageUri" alt="" class="rounded-lg w-full h-full" />
+                        }
+
+                    </div>
+                    <div class="text-center space-y-1">
+                        <a asp-controller="Book" asp-action="Details" asp-route-bookId="@item.bookId"
+                                            class="text-black font-[400]">@item.Title</a>
+                        <p class="text-blue-800 text-sm">@item.Price.ToString("C2")</p>
+                    </div>
+                        <div class="absolute hidden top-1/2 left-1/2">
+                            <i class='bx bx-cart-alt text-slate-500 text-2xl'></i>
+                        </div>
+                    </div>
+            }
+
         </div>
     </div>
 </section>
+
+@section Scripts
+{
+    <script>
+        let $addQty = $("#qty-incr");
+        let $decrQty = $("#qty-decr");
+        let $qtyValue = $("#qty-value");
+        var $addCart = $("#add-cart");
+
+        $addQty.on("click", (e) => {
+            e.preventDefault();
+            var currentValue = parseInt($qtyValue.text());
+            $qtyValue.text(currentValue + 1);
+        })
+
+        $decrQty.on("click", (e) => {
+            e.preventDefault()
+            var currentValue = parseInt($qtyValue.text());
+            if (currentValue == 1) {
+                $qtyValue.text(currentValue)
+            }
+            else {
+                $qtyValue.text(currentValue - 1)
+            }
+        });
+
+@* var $formData = new FormData();
+$formData.append("id", @Model.Book.BookId)
+$formData.append("quantity", parseInt($qtyValue.text()))
+
+        $addCart.on("click", (e) => {
+            e.preventDefault()
+            let $qtyValue = $("#qty-value");
+            var qtyVal = parseInt($qtyValue.text());
+            var url = @Url.Action("Cart", "Add", new { id = @Model.Book.BookId, quantity = qtyVal })
+            $.ajax({
+            type: "POST",
+            url: url,
+            processData: false,
+            contentType: false,
+            success: (data) =>
+            {
+            alert("posted")
+            },
+            error: (error) =>
+            {
+                alert(`not processed ${error}`)
+            }
+            })
+        }) *@
+    </script>
+}

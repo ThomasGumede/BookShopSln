@@ -1,10 +1,8 @@
 using Core.Entities;
 
 namespace Data.Interfaces;
-public interface IAuthorRepository
+public interface IAuthorRepository : IRepositoryBase<Author>
 {
     Task<IEnumerable<Author>> GetAllAuthorsAsync(bool trackChanges);
     Task<Author?> GetAuthorByIdAsync(int AuthorId, bool trackChanges);
-    void CreateAuthor(Author author);
-    void DeleteAuthor(Author author);
 }

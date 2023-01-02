@@ -1,0 +1,159 @@
+@model CartVM
+@{
+    ViewData["Title"] = "Cart Page";
+}
+
+<section>
+    <div class="space-y-7 ml-auto mr-auto font-sans box-border w-full">
+        <div class="flex items-center w-full justify-between text-black border-b-2 border-b-blue-500">
+            <div class='active cart-nav text-blue-500 border-b-4 border-b-blue-500 pb-2'>1. Shopping Cart</div>
+            <div
+                class="cart-nav hover:text-blue-500 hover:border-b-4 hover:border-b-blue-500 hover:pb-2 duration-500 transition-all">
+                2. Checkout</div>
+            <div
+                class="cart-nav hover:text-blue-500 hover:border-b-4 hover:border-b-blue-500 hover:pb-2 duration-500 transition-all">
+                3. Completed</div>
+        </div>
+        @* <div class="w-full h-[1px] bg-slate-500"></div> *@
+        <div id="cart" class="min-w-full space-y-4">
+            @* {% if cart|length == 0 %}
+                <div class="text-xl font-bold text-blue-500 w-full h-16">
+                <p>Your Cart Is Empty</p>
+                </div>
+                {% else %} *@
+
+            @if(Model.List.Count() == 0)
+            {
+                <div class="text-xl font-bold text-black w-full h-16">
+                <p>Your Cart Is Empty</p>
+                </div>
+            }else{
+
+            <table class="border-b-[1px] border-b-[#242f51af] min-w-full text-black text-lg font-normal">
+                <tr>
+                    <th class="px-8 py-5 text-center">Product</th>
+                    <th class="px-8 py-5 text-center">Quantity</th>
+                    <th class="px-8 py-5 text-center">Price</th>
+                    <th class="px-8 py-5 text-center">Total</th>
+                </tr>
+
+@foreach(var item in Model.List){
+
+
+                <tr class="text-black text-lg text-normal item-@item.Book.bookId">
+                    <td class="flex items-center space-x-5 px-8 py-5 text-center">
+                        <p class="text-2xl font-semibold cursor-pointer hover:text-blue-500 hover:scale-105 duration-500 transition-all"
+                            id="remove-cart" data-bookid="@item.Book.bookId" data-action="post">x</p>
+                        <img src="~/@item.Book.BookImageUri" class="w-[80px] h-[100px]" />
+                                <a asp-controller="Book" asp-action="Details" asp-route-bookId="@item.Book.bookId" class="text-xl font-regular">@item.Book.Title</a>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                        <div class="flex items-center space-x-2">
+                            <div
+                                class="border-2 border-blue-500 px-2 py-1 text-blue-500 flex items-center justify-center space-x-6 font-normal">
+                                <button class="text-xl outline-none font-semibold border-none cursor-pointer"
+                                    id="qty-decr-@item.Book.bookId">-</button>
+                                <div class="text-xl" data-id="@item.Book.bookId" id="qty-value-@item.Book.bookId">@item.Quantity</div>
+                                <button class="text-xl outline-none font-semibold border-none cursor-pointer"
+                                    id="qty-incr-@item.Book.bookId">+</button>
+                            </div>
+                            <button id="" data-bookid="@item.Book.bookId" data-action="post"
+                                class="px-2 update-cart py-1 text-center hover:bg-white outline-none hover:text-blue-500 duration-500 transition-all border-2 border-blue-500 bg-blue-500 text-white text-lg font-normal cursor-pointer">
+                                Update
+                            </button>
+                        </div>
+                    </td>
+
+                    <td class="px-8 py-5 text-center">
+                        R<span id="item_price-2">@item.Book.Price</span>
+                    </td>
+                    <td class="px-8 py-5 text-center">
+                                R<span id="item_total_price-2">@item.Subtotal</span>
+                    </td>
+                </tr>
+}
+            </table>
+            }
+            <div class="flex w-full items-center justify-between">
+                <div class="flex items-center space-x-5">
+                    <div class="p-4 text-center border-2 border-blue-500 cursor-pointer">
+                        <p><a asp-controller="Book" asp-action="Index"
+                                class="text-blue-500 font-normal text-lg">Continue Shopping</a></p>
+                    </div>
+                    <div
+                        class="p-4 text-center border-2 bg-blue-500 cursor-pointer {% if cart|length == 0 %}pointer-events-none opacity-60{% endif %}">
+                        <p><a href="#" class="text-white font-normal text-lg">Proceed To Checkout</a></p>
+                    </div>
+
+                </div>
+                <div class="space-x-4">
+                    <p class="font-normal text-black inline-block">Total: </p>
+                    <p class="font-bold text-black inline-block">R<span id="total_price">@Model.Subtotal</span></p>
+                </div>
+            </div>
+            <hr class="w-[1px]" />
+            
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+<script>
+    let $addQty = $("#qty-incr-2");
+    let $decrQty = $("#qty-decr-2");
+    let $qtyValue = $("#qty-value-2");
+    let $itemPrice = $("#item_price-2");
+    let $itemTotalPr = $("#item_total_price-2");
+    let $totalPrice = $("#total_price")
+    let $cartTotal = $("#cart_total")
+    let $cartUpdates = document.querySelectorAll(".update-cart")
+
+    $addQty.on("click", (e) => {
+        e.preventDefault();
+        var currentValue = parseInt($qtyValue.text());
+        $qtyValue.text(currentValue + 1);
+        $cartTotal.text(parseInt($cartTotal.text()) + 1)
+
+        var newQtyValue = parseFloat($qtyValue.text());
+
+        var newItemTotal = parseFloat($itemPrice.text()) * newQtyValue;
+
+        var newItemTotal = parseFloat($itemPrice.text()) * newQtyValue;
+
+        @* Remove the previous item total from cart total price then add new item total to the cart total *@
+        var newTotal = parseFloat(newItemTotal) + (parseFloat($totalPrice.text()) - parseFloat($itemTotalPr.text()))
+
+        
+        $itemTotalPr.text(parseFloat(newItemTotal));
+        $totalPrice.text(newTotal)
+    })
+
+    $decrQty.on("click", (e) => {
+        e.preventDefault()
+        var currentValue = parseInt($qtyValue.text());
+        if (currentValue == 1) {
+            $qtyValue.text(currentValue)
+        }
+        else {
+            $qtyValue.text(currentValue - 1)
+            $cartTotal.text(parseInt($cartTotal.text()) - 1)
+        }
+
+        var newQtyValue = parseFloat($qtyValue.text());
+
+        var newItemTotal = parseFloat($itemPrice.text()) * newQtyValue;
+        var newTotal = parseFloat(newItemTotal) + (parseFloat($totalPrice.text()) - parseFloat($itemTotalPr.text()))
+        $itemTotalPr.text(parseFloat(newItemTotal));
+        $totalPrice.text(newTotal)
+
+    })
+
+$cartUpdates.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+e.preventDefault();
+alert($(this).data("bookid"))
+    })
+})
+</script>
+}

@@ -2,7 +2,7 @@ namespace Data.Request;
 
 public class RequestParameters
 {
-const int maxPageSize = 50;
+    const int maxPageSize = 50;
     public int PageNumber { get; set; } = 1;
 
     private int _pageSize = 10;
@@ -20,6 +20,6 @@ const int maxPageSize = 50;
 
     public string? OrderBy { get; set; }
     public string? searchTerm { get; set; }
-    public List<string>? FilterTerms { get; set; }
-    
+    public string? FilterTerms { get; set; }
+
 }

@@ -18,8 +18,4 @@ public class GenreRepository : RepositoryBase<Genre>, IGenreRepository
         await FindByCondition(Genre => Genre.GenreId.Equals(genreId), trackChanges)
         .Include(b => b.Books)
         .SingleOrDefaultAsync();
-
-    public void CreateGenre(Genre genre) => Create(genre);
-
-    public void DeleteGenre(Genre genre) => Delete(genre);
 }
