@@ -7,8 +7,9 @@ Book Shop developed using asp.net core, tailwindcss and jquery/javascript.
 ## Features
 
 - Add/View/Delete books
-- Add/Delete books from Cart(TODO)
-- View Cart(TODO)
+- Filter/Search/Order/Pagination books
+- Add/Delete books from Cart
+- View Cart
 
 # Documentation
 
@@ -18,13 +19,18 @@ Book Shop developed using asp.net core, tailwindcss and jquery/javascript.
 - update connection string & add your own database then do migrations & database update
 - dotnet run
 
-## Shot Add/View/Delete(TODO)
+## Book Add/View/Delete(TODO)
 - book/
 ![ ](docs_img/book_index.png)
 
 
 - book/details/{id}
 ![ ](docs_img/book_details_id.png)
+
+## Cart View
+
+- cart/
+![ ](docs_img/cart.png)
 
 
 ## Account Register/Login/Reset password
